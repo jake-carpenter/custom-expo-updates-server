@@ -1,3 +1,31 @@
+# Repro for expo export bug report
+
+This is a small modification to the original demo for the Expo Updates protocol. A `greeting` property was added to the `extra` config in `app.json` and is displayed in the app, as is the entire contents of `extra`.
+
+After receiving an OTA update, the app no longer has configuration originally specified in Constants.expoConfig.extra.
+
+### Steps to reproduce (similar to original instructions):
+1. Clone the project
+1. Enter the client directory: `cd ./expo-updates-client`
+1. `yarn install`
+1. Run expo-dev-client to build for iOS: `yarn ios`
+1. Verify "Hello, world!" greeting is shown with extra config when the debug app runs in the simulator
+1. Kill expo run process
+1. Open expo-updates-client directory in Xcode
+1. Edit Scheme on the project and change build config from Debug => Release
+1. Run project in Xcode
+1. Verify "Hello, world!" greeting is shown with extra config when the RELEASE app runs in the simulator
+1. Optionally, uncomment code in `App.js`
+1. Switch to server directory: `cd ../expo-updates-server`
+1. Init server project: `yarn install`
+1. Run original script to build update and copy to server: `yarn expo-publish`
+1. Run the update server `yarn dev`
+1. Force close the RELEASE app in the simulator and re-launch
+1. Note that the app has received update, but the greeting is blank and the extra config is empty.
+
+
+# Original README below
+-------------------------
 # Custom Expo Updates Server & Client
 
 This repo contains a server and client that implement the [Expo Updates protocol specification](https://docs.expo.dev/technical-specs/expo-updates-0).

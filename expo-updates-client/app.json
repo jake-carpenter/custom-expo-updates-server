@@ -10,6 +10,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "extra": {
+      "greeting": "Hello, world!"
+    },
     "runtimeVersion": "1",
     "updates": {
       "url": "http://localhost:3000/api/manifest",
